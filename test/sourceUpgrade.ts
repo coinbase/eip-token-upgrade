@@ -75,7 +75,7 @@ describe("SourceUprade", function() {
 	it("reverts if transferFrom fails", async () => {
 	    await expect(sourceUpgrade.upgrade(owner1.address, 1))
 		.to.be.revertedWith(
-		    "ERC20: transfer amount exceeds balance"
+		    "ERC20: insufficient allowance"
 		);
 	});
 	
