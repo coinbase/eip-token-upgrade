@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: Apache-2.0
 pragma solidity 0.8.9;
 
-interface IEIPUPGRADEABLE {
+interface IEIP4931 {
     /// @dev A getter to determine the contract that is being upgraded from ("source contract")
     /// @return The address of the source token contract
     function upgradeSource() external view returns(address);
