@@ -12,20 +12,20 @@ const NUMERATOR_RATIO = "1000000000000000000";
 const DENOMINATOR_RATIO = "1000000000000000000";
 
 describe("SourceUprade", function() {
-  let owner1: SignerWithAddress;
-  let sourceERC20: PermissionlessERC20;
-  let destinationERC20: PermissionlessERC20;
-  let sourceUpgrade: SourceUpgrade;
-  let sourceUpgradeFactory: SourceUpgrade__factory;
+    let owner1: SignerWithAddress;
+    let sourceERC20: PermissionlessERC20;
+    let destinationERC20: PermissionlessERC20;
+    let sourceUpgrade: SourceUpgrade;
+    let sourceUpgradeFactory: SourceUpgrade__factory;
 
-  beforeEach(async () => {
-      [owner1] = await hre.ethers.getSigners();
-      const ERC20Factory = await hre.ethers.getContractFactory("PermissionlessERC20");
-      sourceERC20 = await ERC20Factory.deploy("Source", "SOURCE");
-      destinationERC20 = await ERC20Factory.deploy("Destination", "DESTINATION");
-      sourceUpgradeFactory = await hre.ethers.getContractFactory("SourceUpgrade");
-      sourceUpgrade = await sourceUpgradeFactory.deploy(sourceERC20.address, destinationERC20.address, UPGRADE_STATUS, DOWNGRADE_STATUS, NUMERATOR_RATIO, DENOMINATOR_RATIO); 
-  });
+    beforeEach(async () => {
+	[owner1] = await hre.ethers.getSigners();
+	const ERC20Factory = await hre.ethers.getContractFactory("PermissionlessERC20");
+	sourceERC20 = await ERC20Factory.deploy("Source", "SOURCE");
+	destinationERC20 = await ERC20Factory.deploy("Destination", "DESTINATION");
+	sourceUpgradeFactory = await hre.ethers.getContractFactory("SourceUpgrade");
+	sourceUpgrade = await sourceUpgradeFactory.deploy(sourceERC20.address, destinationERC20.address, UPGRADE_STATUS, DOWNGRADE_STATUS, NUMERATOR_RATIO, DENOMINATOR_RATIO); 
+    });
     describe("constructor", () => {
 	it("reverts if source and destination addresses are the same", async () => {
 	    await expect(sourceUpgradeFactory.deploy(sourceERC20.address, sourceERC20.address, UPGRADE_STATUS, DOWNGRADE_STATUS, NUMERATOR_RATIO, DENOMINATOR_RATIO))
